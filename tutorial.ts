@@ -1,26 +1,26 @@
-// user doen't exist, wrong credentials, internal
+// generics
 
-enum LoginError{
-    Unauthorized = "unauthroized",
-    NoUser = "user doenot exist",
-    WrongCredential = "wrongCredential",
-    Internal = "internal",
-}
-const printErrorMsg = (error: LoginError) => {
+class StorageContainer<T>{
+    private contents: T[]
 
-    if(error ==LoginError.Unauthorized){
-        console.log("user not authorized");
+    constructor(){
+        this.contents = [];
+
     }
-    else if(error ==LoginError.NoUser){
-        console.log("No user is provided");
+    addItem(item: T): void{
+        this.contents.push(item);
     }
-    else if(error ==LoginError.WrongCredential){
-        console.log("wrong credential");
+    getItem(idx: number): T | undefined{
+        return this.contents[idx];
+
     }
-    else{
-        console.log("Internal error");
-        
-    }
-    
 }
-printErrorMsg(LoginError.WrongCredential);
+
+const usernames = new StorageContainer<string>();
+usernames.addItem("pedroTech");
+usernames.addItem("john doe");
+console.log(usernames.getItem(0));
+const count = new StorageContainer<number>();
+count.addItem(9);
+count.addItem(20);
+console.log(count.getItem(1));
