@@ -1,25 +1,26 @@
-// union -> | and intersection -> &
-// type alias
-// type IDFieldType = string | number;
-// const printID = (id: IDFieldType) =>{
-//     console.log("ID" + id);
-    
-// }
-// printID(45678);
+// user doen't exist, wrong credentials, internal
 
-interface BusinessPartner{
-    name: string;
-    creditScore: number;
+enum LoginError{
+    Unauthorized = "unauthroized",
+    NoUser = "user doenot exist",
+    WrongCredential = "wrongCredential",
+    Internal = "internal",
 }
-interface UserIdentity {
-    id: number;
-    email: string;
-}
-type Employee = BusinessPartner & UserIdentity;
+const printErrorMsg = (error: LoginError) => {
 
-const signContract = (employee: Employee): void=>{
-    console.log("Contract signed by " + employee.name + "with email" + employee.email);
+    if(error ==LoginError.Unauthorized){
+        console.log("user not authorized");
+    }
+    else if(error ==LoginError.NoUser){
+        console.log("No user is provided");
+    }
+    else if(error ==LoginError.WrongCredential){
+        console.log("wrong credential");
+    }
+    else{
+        console.log("Internal error");
+        
+    }
     
-};
-
-signContract({name: "Pedro", creditScore: 800, id: 34, email:"pedro@gmail.com"})
+}
+printErrorMsg(LoginError.WrongCredential);
