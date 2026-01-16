@@ -1,26 +1,17 @@
-// generics
+// readonly
+interface Employee{
+    readonly employeeId: number;
+    startDate: Date;
+    name: string;
 
-class StorageContainer<T>{
-    private contents: T[]
-
-    constructor(){
-        this.contents = [];
-
-    }
-    addItem(item: T): void{
-        this.contents.push(item);
-    }
-    getItem(idx: number): T | undefined{
-        return this.contents[idx];
-
-    }
 }
+const employee: Employee ={
+    employeeId:1,
+    startDate:new Date(),
+    name: "Ram",
 
-const usernames = new StorageContainer<string>();
-usernames.addItem("pedroTech");
-usernames.addItem("john doe");
-console.log(usernames.getItem(0));
-const count = new StorageContainer<number>();
-count.addItem(9);
-count.addItem(20);
-console.log(count.getItem(1));
+}
+employee.name = "new name";
+console.log(employee.name);//new name
+employee.employeeId = 44; //can't do it
+
